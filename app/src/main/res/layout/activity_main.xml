@@ -7,6 +7,22 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textTopTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:padding="16dp"
+        android:textAllCaps="false"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/lato_reg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Astronomy Picture of the Day"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        />
+
+    <TextView
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +31,7 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_reg"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTopTitle"
         />
 
     <ImageView
@@ -27,15 +43,21 @@
         android:layout_marginTop="16dp"
         />
 
-    <TextView
-        android:id="@+id/textDesc"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="18dp"
-        android:fontFamily="@font/lato_reg"
         app:layout_constraintTop_toBottomOf="@id/imageView"
-        android:padding="8dp"
-        />
+        >
+        <TextView
+            android:id="@+id/textDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/lato_reg"
+            android:padding="8dp"
+            android:gravity="center_horizontal"
+            />
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
