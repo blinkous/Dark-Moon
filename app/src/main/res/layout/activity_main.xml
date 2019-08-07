@@ -14,7 +14,8 @@
         android:textAllCaps="false"
         android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/lato_light"
+        android:fontFamily="@font/lato_reg"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <ImageView
@@ -23,16 +24,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         />
 
     <TextView
         android:id="@+id/textDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:textSize="18dp"
         android:fontFamily="@font/lato_reg"
         app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:padding="8dp"
         />
 
 </android.support.constraint.ConstraintLayout>
