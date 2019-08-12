@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_waxing_moon"
+        android:icon="@drawable/ic_moon2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_waxing_moon"
+        android:roundIcon="@drawable/ic_moon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
