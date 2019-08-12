@@ -23,14 +23,21 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:padding="16dp"
-                android:textAllCaps="false"
                 android:gravity="center_horizontal"
                 android:fontFamily="@font/lato_reg"
-                android:text="Astronomy Picture of the Day"
-                android:backgroundTint="@color/colorPrimary"
-                android:background="@color/colorPrimary"
-                android:textColor="@android:color/white"
+                android:text="@string/title_apod"
+                android:textColor="@color/navy"
+                android:textAllCaps="true"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:srcCompat="@drawable/line"
+                app:layout_constraintTop_toBottomOf="@id/textTopTitle"
                 />
 
             <TextView

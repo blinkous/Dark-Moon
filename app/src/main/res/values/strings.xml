@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dark Moon</string>
+    <string name="title_apod">Astronomy Picture of the Day</string>
 </resources>

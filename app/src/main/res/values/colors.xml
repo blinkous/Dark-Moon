@@ -4,7 +4,8 @@
     <!--<color name="colorPrimaryDark">#00131A</color>-->
     <!--<color name="colorAccent">#6C9DB1</color>-->
     <color name="colorPrimary">#F7F7F7</color>
-    <color name="colorPrimaryDark">#E7E7E7</color>
+    <color name="colorPrimaryDark">#DFDFDF</color>
     <color name="colorAccent">#6C9DB1</color>
-    <color name="navy">#00131A</color>
+
+    <color name="navy">#002130</color>
 </resources>
