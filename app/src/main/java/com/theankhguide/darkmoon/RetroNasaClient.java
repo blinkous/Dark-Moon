@@ -7,7 +7,7 @@ public class RetroNasaClient {
     private static Retrofit retrofit;
 
     //Define the base URL//
-    private static final String BASE_URL = "https://api.nasa.gov/planetary/";
+    private static final String BASE_URL = "https://api.nasa.gov/";
 
     // Create the Retrofit instance
     public static Retrofit getRetrofitInstance() {

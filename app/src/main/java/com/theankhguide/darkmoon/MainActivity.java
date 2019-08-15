@@ -1,8 +1,11 @@
 package com.theankhguide.darkmoon;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +44,23 @@ public class MainActivity extends AppCompatActivity {
                 //If the request fails, then display the following toast//
                 Toast.makeText(MainActivity.this, "Unable to load astronomical data", Toast.LENGTH_SHORT).show();
                 Log.d("nasa", "onFailure:" + throwable);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_apod:
+                        // do something here
+                        return true;
+                    case R.id.action_other:
+                        // do something here
+                        return true;
+                    default: return true;
+                }
             }
         });
     }

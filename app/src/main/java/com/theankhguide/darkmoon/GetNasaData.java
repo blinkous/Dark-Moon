@@ -5,7 +5,7 @@ import retrofit2.http.GET;
 
 public interface GetNasaData {
     //Specify the request type and pass the relative URL//
-    @GET("apod?api_key=" + BuildConfig.ApiKey1)
+    @GET("planetary/apod?api_key=" + BuildConfig.ApiKey1)
 
     //Wrap the response in a Call object with the type of the expected result//
     Call<RetroNasa> getAllNasa();
