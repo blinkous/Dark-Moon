@@ -15,16 +15,16 @@ public class RetroNasaMediaItems {
     public RetroNasaMediaLinks get_links(){
         return links;
     }
-    public String get_items(){
-        return items;
+    public RetroNasaMediaData get_data(){
+        return data;
     }
 
     // Setters
     public void set_links(RetroNasaMediaLinks links){
         this.links = links;
     }
-    public void set_(String items){
-        this.items = items;
+    public void set_data(RetroNasaMediaData data){
+        this.data = data;
     }
 
 }
