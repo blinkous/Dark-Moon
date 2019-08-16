@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/ic_moon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NasaMediaRecyclerView"></activity>
+        <activity android:name=".NasaSearchActivity"></activity>
+        <activity android:name=".NasaMediaRecyclerView" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
