@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**GETTING THE NASA DATA & DISPLAYING IT*/
         //Create a handler for the RetrofitInstance interface//
-        GetNasaData service = RetroNasaClient.getRetrofitInstance().create(GetNasaData.class);
+        GetNasaApodData service = RetroNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
         Log.d("nasa", "created get nasa data service");
 
         Call<RetroNasa> call = service.getAllNasa();
@@ -47,17 +47,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // To make the bottom navigation work:
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
+        // Setting the listener for when something is selected in the bottom nav
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_apod:
                         // do something here
+                        Toast.makeText(MainActivity.this, "APOD WOOHOO", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.action_other:
                         // do something here
+                        Toast.makeText(MainActivity.this, "Other...", Toast.LENGTH_SHORT).show();
                         return true;
                     default: return true;
                 }
