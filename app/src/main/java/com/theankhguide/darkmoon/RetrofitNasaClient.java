@@ -3,7 +3,7 @@ package com.theankhguide.darkmoon;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetroNasaClient {
+public class RetrofitNasaClient {
     private static Retrofit retrofit;
 
     //Define the base URL//

@@ -3,11 +3,11 @@ package com.theankhguide.darkmoon;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetroNasaMediaClient {
+public class RetrofitNasaMediaClient {
     private static Retrofit retrofit;
 
     //Define the base URL//
-    private static final String BASE_URL = "https://images-api.nasa.gov/";
+    private static final String BASE_URL = "https://images-api.nasa.gov";
 
     // Create the Retrofit instance
     public static Retrofit getRetrofitInstance() {

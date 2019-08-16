@@ -1,34 +1,54 @@
 package com.theankhguide.darkmoon;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class NasaMediaRecyclerView extends AppCompatActivity {
+
+    private MyNasaMAdapter MyNasaMAdapter;
+    private RecyclerView myRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.nasa_media_recycler_view);
+
+        // Grab the search text "message" from the intent that started this activity
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Log.d("search", "message: *" + message + "*");
+
+        //Create a handler for the RetrofitInstance interface//
+        GetNasaMediaData service = Retro.getRetrofitInstance().create(GetPlantData.class);
+
+        // Create a hash map to store key value pairs for filtering the data in the api call
+        Map<String, String> data = new HashMap<>();
+        data.put("q", message);
+        Call<List<RetroPlant>> call = service.getAllPlants(data);
+
 
         /**GETTING THE NASA DATA & DISPLAYING IT*/
         //Create a handler for the RetrofitInstance interface//
-        GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
+        GetNasaMediaData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
         Log.d("nasa", "created get nasa data service");
 
-        Call<RetroNasa> call = service.getAllNasa();
+        Call<RetroNasa> call = service.getAllNasaMedia();
 
         //Execute the request asynchronously//
         call.enqueue(new Callback<RetroNasa>() {
@@ -44,26 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 //If the request fails, then display the following toast//
                 Toast.makeText(MainActivity.this, "Unable to load astronomical data", Toast.LENGTH_SHORT).show();
                 Log.d("nasa", "onFailure:" + throwable);
-            }
-        });
-
-        // To make the bottom navigation work:
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        // Setting the listener for when something is selected in the bottom nav
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_apod:
-                        // do something here
-                        Toast.makeText(MainActivity.this, "APOD WOOHOO", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.action_other:
-                        // do something here
-                        Toast.makeText(MainActivity.this, "Other...", Toast.LENGTH_SHORT).show();
-                        return true;
-                    default: return true;
-                }
             }
         });
     }
