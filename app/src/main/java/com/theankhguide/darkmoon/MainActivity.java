@@ -1,11 +1,14 @@
 package com.theankhguide.darkmoon;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**GETTING THE NASA DATA & DISPLAYING IT*/
+        /**Getting the NASA APOD data and display it*/
         //Create a handler for the RetrofitInstance interface//
         GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
         Log.d("nasa", "created get nasa data service");
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // To make the bottom navigation work:
+        /**Bottom Navigation*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         // Setting the listener for when something is selected in the bottom nav
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,16 +59,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_apod:
                         // do something here
-                        Toast.makeText(MainActivity.this, "APOD WOOHOO", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "APOD", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.action_other:
                         // do something here
                         Toast.makeText(MainActivity.this, "Other...", Toast.LENGTH_SHORT).show();
+                        onTapSearch();
                         return true;
                     default: return true;
                 }
             }
         });
+    }
+
+    public void onTapSearch(){
+        Intent intent = new Intent(this, NasaSearchActivity.class);
+        startActivity(intent);
     }
 
     private void loadDataList (RetroNasa nasaList) {

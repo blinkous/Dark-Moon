@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MyNasaMediaAdapter {
+public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.CustomViewHolder>{
     private List<RetroNasaMedia> dataList;
 
     public MyNasaMediaAdapter(List<RetroNasaMedia> dataList){

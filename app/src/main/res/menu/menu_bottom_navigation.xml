@@ -9,8 +9,8 @@
     </item>
     <item
         android:id="@+id/action_other"
-        android:title="other"
-        android:icon="@drawable/ic_grade_black_24dp"
+        android:title="Search"
+        android:icon="@drawable/ic_search_black_24dp"
         >
     </item>
 

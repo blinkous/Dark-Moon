@@ -12,6 +12,6 @@ public interface GetNasaMediaData {
     @GET("search?q=" + BuildConfig.ApiKey1)
 
     //Wrap the response in a Call object with the type of the expected result//
-//    Call<RetroNasa> getAllNasaMedia();
-    Call<List<RetroNasa>> getAllNasaMedia(@QueryMap Map<String, String> options); // Call with parameters
+//    Call<RetroNasaMedia> getAllNasaMedia();
+    Call<List<RetroNasaMedia>> getAllNasaMedia(@QueryMap Map<String, String> options); // Call with parameters
 }
