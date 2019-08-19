@@ -43,27 +43,33 @@ public class NasaMediaRecyclerView extends AppCompatActivity {
         // Create a hash map to store key value pairs for filtering the data in the api call
         Map<String, String> data = new HashMap<>();
         data.put("q", message);
-        Call<List<RetroNasaMedia>> call = service.getAllNasaMedia(data);
+        Log.d("search", "message: *" + data + "*");
+
+        Call<RetroNasaCollection> call = service.getAllNasaMedia(data);
 
         //Execute the request asynchronously//
-        call.enqueue(new Callback<List<RetroNasaMedia>>() {
+        call.enqueue(new Callback<RetroNasaCollection>() {
 
             //Handle a successful response//
             @Override
-            public void onResponse(Call<List<RetroNasaMedia>> call, Response<List<RetroNasaMedia>> response) {
+            public void onResponse(Call<RetroNasaCollection> call, Response<RetroNasaCollection> response) {
                 loadDataList(response.body());
+                Log.d("search", "RESPONSE: *" + response.body() + "*");
+
             }
 
             //Handle execution failures//
             @Override
-            public void onFailure(Call<List<RetroNasaMedia>> call, Throwable throwable) {
+            public void onFailure(Call<RetroNasaCollection> call, Throwable throwable) {
                 //If the request fails, then display the following toast//
-                Toast.makeText(NasaMediaRecyclerView.this, "Unable to load plants", Toast.LENGTH_SHORT).show();
+                Log.d("search", "failure: *" + throwable + "*");
+
+                Toast.makeText(NasaMediaRecyclerView.this, "Unable to load search", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void loadDataList (List <RetroNasaMedia> nasaList) {
+    private void loadDataList (RetroNasaCollection nasaList) {
         //Get a reference to the RecyclerView//
         myRecyclerView = findViewById(R.id.myRecyclerView);
         myNasaMAdapter = new MyNasaMediaAdapter(nasaList);

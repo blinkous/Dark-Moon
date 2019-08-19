@@ -2,10 +2,12 @@ package com.theankhguide.darkmoon;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class RetroNasaMediaItems {
     // Properties
     @SerializedName("links")
-    private RetroNasaMediaLinks links;
+    private List<RetroNasaMediaLinks> links;
 
     @SerializedName("data")
     private RetroNasaMediaData data;
@@ -13,7 +15,7 @@ public class RetroNasaMediaItems {
     // Methods
     // Getters
     public RetroNasaMediaLinks get_links(){
-        return links;
+        return (RetroNasaMediaLinks) links;
     }
     public RetroNasaMediaData get_data(){
         return data;
@@ -21,7 +23,7 @@ public class RetroNasaMediaItems {
 
     // Setters
     public void set_links(RetroNasaMediaLinks links){
-        this.links = links;
+        this.links = (List<RetroNasaMediaLinks>) links;
     }
     public void set_data(RetroNasaMediaData data){
         this.data = data;

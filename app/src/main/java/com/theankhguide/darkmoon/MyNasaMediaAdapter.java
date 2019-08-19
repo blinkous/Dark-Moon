@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.CustomViewHolder>{
-    private List<RetroNasaMedia> dataList;
+    private RetroNasaCollection dataList;
 
-    public MyNasaMediaAdapter(List<RetroNasaMedia> dataList){
+    public MyNasaMediaAdapter(RetroNasaCollection dataList){
         this.dataList = dataList;
     }
 
@@ -47,8 +47,8 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Set the data//
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        holder.textTitle.setText(dataList.get(position).get_items().get_data().get_title());
-        holder.desc.setText(dataList.get(position).get_items().get_data().get_description());
+//        holder.textTitle.setText(dataList.get(position).get_items().get_data().get_title());
+//        holder.desc.setText(dataList.get(position).get_items().get_data().get_description());
 
 //        holder.imageView.;
 //        Picasso.get().load(dataList.get(position).get_items().get_links().get_href()).into(imageView);
@@ -57,6 +57,7 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Calculate the item count for the RecylerView//
     @Override
     public int getItemCount() {
-        return dataList.size();
+//        return dataList.size();
+        return 1;
     }
 }

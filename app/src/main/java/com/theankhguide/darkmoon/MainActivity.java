@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         /**Getting the NASA APOD data and display it*/
         //Create a handler for the RetrofitInstance interface//
         GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
-        Log.d("nasa", "created get nasa data service");
 
         Call<RetroNasa> call = service.getAllNasa();
 
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadDataList (RetroNasa nasaList) {
-        Log.d("nasa", "**loading the data**");
         // Get references to the objects in the layout
         TextView textTitle = findViewById(R.id.textTitle);
         TextView desc = findViewById(R.id.textDesc);

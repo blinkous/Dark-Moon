@@ -29,6 +29,7 @@ public class NasaSearchActivity extends AppCompatActivity {
                     case R.id.action_apod:
                         // do something here
                         Toast.makeText(NasaSearchActivity.this, "Apod...", Toast.LENGTH_SHORT).show();
+                        onTapApod();
                         return true;
                     case R.id.action_other:
                         // do something here
@@ -39,6 +40,12 @@ public class NasaSearchActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onTapApod(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void onSearchButtonTap(View view){
         Intent intent = new Intent(this, NasaMediaRecyclerView.class);
         // Grab the search text, convert to string, and put it in the intent
