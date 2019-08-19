@@ -33,8 +33,8 @@ public class NasaMediaRecyclerView extends AppCompatActivity {
 
         // Grab the search text "message" from the intent that started this activity
         Intent intent = getIntent();
-//        String message = intent.getStringExtra(NasaSearchActivity.EXTRA_MESSAGE);
-        String message = "apollo 11";
+        String message = intent.getStringExtra(NasaSearchActivity.EXTRA_MESSAGE);
+//        String message = "apollo 11";
         Log.d("search", "message: *" + message + "*");
 
         //Create a handler for the RetrofitInstance interface//

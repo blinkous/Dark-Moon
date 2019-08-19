@@ -13,6 +13,7 @@ import android.widget.Toast;
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class NasaSearchActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.theankhguide.darkmoon.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
