@@ -99,6 +99,7 @@
         app:itemTextColor="@color/navy"
         app:itemTextAppearanceActive="@color/navy"
         app:itemTextAppearanceInactive="@color/colorAccent"
+        android:fontFamily="@font/lato_reg"
         />
 
 
