@@ -47,8 +47,8 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Set the data//
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-//        holder.textTitle.setText(dataList.get(position).get_items().get_data().get_title());
-//        holder.desc.setText(dataList.get(position).get_items().get_data().get_description());
+        holder.textTitle.setText(dataList.get_collection().get_items().get(position).get_data().get(0).get_title());
+        holder.desc.setText(dataList.get_collection().get_items().get(position).get_data().get(0).get_description());
 
 //        holder.imageView.;
 //        Picasso.get().load(dataList.get(position).get_items().get_links().get_href()).into(imageView);
@@ -57,7 +57,6 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Calculate the item count for the RecylerView//
     @Override
     public int getItemCount() {
-//        return dataList.size();
-        return 1;
+        return dataList.get_collection().get_items().size();
     }
 }

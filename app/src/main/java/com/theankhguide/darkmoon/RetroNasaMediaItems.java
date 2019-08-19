@@ -10,15 +10,15 @@ public class RetroNasaMediaItems {
     private List<RetroNasaMediaLinks> links;
 
     @SerializedName("data")
-    private RetroNasaMediaData data;
+    private List<RetroNasaMediaData> data;
 
     // Methods
     // Getters
-    public RetroNasaMediaLinks get_links(){
-        return (RetroNasaMediaLinks) links;
+    public List<RetroNasaMediaLinks> get_links(){
+        return (List<RetroNasaMediaLinks>) links;
     }
-    public RetroNasaMediaData get_data(){
-        return data;
+    public List<RetroNasaMediaData> get_data(){
+        return (List<RetroNasaMediaData>) data;
     }
 
     // Setters
@@ -26,7 +26,7 @@ public class RetroNasaMediaItems {
         this.links = (List<RetroNasaMediaLinks>) links;
     }
     public void set_data(RetroNasaMediaData data){
-        this.data = data;
+        this.data = (List<RetroNasaMediaData>) data;
     }
 
 }

@@ -16,8 +16,8 @@ public class RetroNasaMedia {
 //    public String get_metadata(){
 //        return metadata;
 //    }
-    public RetroNasaMediaItems get_items(){
-        return (RetroNasaMediaItems) items;
+    public List<RetroNasaMediaItems> get_items(){
+        return (List<RetroNasaMediaItems>) items;
     }
 
     // Setters
