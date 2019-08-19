@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -52,7 +53,12 @@ public class NasaSearchActivity extends AppCompatActivity {
         // Grab the search text, convert to string, and put it in the intent
         EditText editText = (EditText) findViewById(R.id.media_search_text);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        if(!message.isEmpty()) {
+            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(NasaSearchActivity.this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

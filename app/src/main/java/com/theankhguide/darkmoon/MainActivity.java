@@ -58,11 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_apod:
                         // do something here
-                        Toast.makeText(MainActivity.this, "APOD", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.action_other:
                         // do something here
-                        Toast.makeText(MainActivity.this, "Other...", Toast.LENGTH_SHORT).show();
                         onTapSearch();
                         return true;
                     default: return true;

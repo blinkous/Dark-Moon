@@ -96,9 +96,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom_navigation"
         android:background="@color/colorPrimary"
-        app:itemTextColor="@color/navy"
-        app:itemTextAppearanceActive="@color/navy"
-        app:itemTextAppearanceInactive="@color/colorAccent"
+        app:itemTextColor="@color/darkGrey"
+        app:itemIconTint="@color/darkGrey"
+        app:itemTextAppearanceActive="@color/colorAccent"
         android:fontFamily="@font/lato_reg"
         />
 

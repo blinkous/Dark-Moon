@@ -2,8 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_apod"
-        android:title="@string/title_apod"
-        android:titleCondensed="APOD"
+        android:title="APOD"
         android:icon="@drawable/ic_grade_black_24dp"
         >
     </item>
