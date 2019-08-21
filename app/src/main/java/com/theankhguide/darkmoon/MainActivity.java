@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.action_search:
                         // do something here
-//                        onTapSearch();
+                        onTapSearch();
                         return true;
                     default: return true;
                 }
@@ -49,30 +49,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /**Swipe gesture listeners*/
-//        View myView = (View) findViewById(R.id.container_view);
-        TextView myView = (TextView) findViewById(R.id.textTopTitle);
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeDown() {
-                Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipeLeft() {
-                Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipeUp() {
-                Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipeRight() {
-                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        /**Swipe gesture listeners*/
+////        View myView = (View) findViewById(R.id.container_view);
+//        TextView myView = (TextView) findViewById(R.id.textTopTitle);
+//        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+//            @Override
+//            public void onSwipeDown() {
+//                Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSwipeLeft() {
+//                Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSwipeUp() {
+//                Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSwipeRight() {
+//                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void getApod(){

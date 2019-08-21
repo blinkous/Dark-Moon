@@ -27,12 +27,12 @@ public class NasaSearchActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_apod:
                         // do something here
-                        Toast.makeText(NasaSearchActivity.this, "Apod...", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(NasaSearchActivity.this, "Apod...", Toast.LENGTH_SHORT).show();
                         onTapApod();
                         return true;
                     case R.id.action_search:
                         // do something here
-                        Toast.makeText(NasaSearchActivity.this, "Other...", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(NasaSearchActivity.this, "Search...", Toast.LENGTH_SHORT).show();
                         return true;
                     default: return true;
                 }
