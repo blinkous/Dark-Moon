@@ -5,13 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class NasaSearchActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.theankhguide.darkmoon.MESSAGE";
@@ -33,7 +30,7 @@ public class NasaSearchActivity extends AppCompatActivity {
                         Toast.makeText(NasaSearchActivity.this, "Apod...", Toast.LENGTH_SHORT).show();
                         onTapApod();
                         return true;
-                    case R.id.action_other:
+                    case R.id.action_search:
                         // do something here
                         Toast.makeText(NasaSearchActivity.this, "Other...", Toast.LENGTH_SHORT).show();
                         return true;

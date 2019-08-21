@@ -1,6 +1,5 @@
 package com.theankhguide.darkmoon;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +24,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getApod();
+
+        /**Bottom Navigation*/
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        // Setting the listener for when something is selected in the bottom nav
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.action_apod:
+//                        // do something here
+//                        return true;
+//                    case R.id.action_other:
+//                        // do something here
+//                        onTapSearch();
+//                        return true;
+//                    default: return true;
+//                }
+//            }
+//        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_apod:
+                        // do something here
+                        return true;
+                    case R.id.action_search:
+                        // do something here
+//                        onTapSearch();
+                        return true;
+                    default: return true;
+                }
+            }
+        });
+    }
+
+    public void getApod(){
         /**Getting the NASA APOD data and display it*/
         //Create a handler for the RetrofitInstance interface//
         GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
@@ -44,27 +80,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RetroNasa> call, Throwable throwable) {
                 //If the request fails, then display the following toast//
-                Toast.makeText(MainActivity.this, "Unable to load astronomical data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Unable to load APOD data", Toast.LENGTH_SHORT).show();
                 Log.d("nasa", "onFailure:" + throwable);
-            }
-        });
-
-        /**Bottom Navigation*/
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        // Setting the listener for when something is selected in the bottom nav
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_apod:
-                        // do something here
-                        return true;
-                    case R.id.action_other:
-                        // do something here
-                        onTapSearch();
-                        return true;
-                    default: return true;
-                }
             }
         });
     }
