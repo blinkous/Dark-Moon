@@ -2,4 +2,5 @@
     <string name="app_name">Dark Moon</string>
     <string name="title_apod">Astronomy Picture of the Day</string>
     <string name="search_nasa_media_library">Search Nasa Media Library</string>
+    <string name="search">Search</string>
 </resources>
