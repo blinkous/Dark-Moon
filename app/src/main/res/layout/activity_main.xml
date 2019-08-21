@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+    <View android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/container_view">
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -101,6 +101,8 @@
         app:itemIconTint="@drawable/bottom_nav_colors"
         android:fontFamily="@font/lato_reg"
         />
+
+    </View>
 
 
 </android.support.constraint.ConstraintLayout>
