@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             textTitle.setText(nasaList.get_title());
             desc.setText(nasaList.get_explanation());
             Picasso.get().load(nasaList.get_url()).into(imageView);
+//            Log.d("home", "loadDataList: **********" + nasaList.get_url() + "*************");
         }
     }
 }

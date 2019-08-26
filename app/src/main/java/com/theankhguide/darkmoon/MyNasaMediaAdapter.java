@@ -1,6 +1,7 @@
 package com.theankhguide.darkmoon;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.CustomViewHolder>{
     private RetroNasaCollection dataList;
@@ -30,9 +29,9 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
             super(itemView);
             myView = itemView;
 
-            textTitle = myView.findViewById(R.id.media_title);
-            desc = myView.findViewById(R.id.media_desc);
-            imageView = myView.findViewById(R.id.media_imageView);
+            textTitle = (TextView) myView.findViewById(R.id.media_title);
+            desc = (TextView) myView.findViewById(R.id.media_result_desc);
+            imageView = (ImageView) myView.findViewById(R.id.media_result_imageView);
         }
     }
 
@@ -47,11 +46,22 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Set the data//
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        holder.textTitle.setText(dataList.get_collection().get_items().get(position).get_data().get(0).get_title());
-        holder.desc.setText(dataList.get_collection().get_items().get(position).get_data().get(0).get_description());
+        String rTitle = dataList.get_collection().get_items().get(position).get_data().get(0).get_title();
+        String rDesc = dataList.get_collection().get_items().get(position).get_data().get(0).get_description();
+        String url = dataList.get_collection().get_items().get(position).get_links().get(0).get_href();
 
-//        holder.imageView.;
-//        Picasso.get().load(dataList.get(position).get_items().get_links().get_href()).into(imageView);
+        if(!rTitle.isEmpty()) {
+            holder.textTitle.setText(rTitle);
+        }
+        if(!rDesc.isEmpty()) {
+            Log.d("search", "loadDataList: ***" + rDesc);
+            holder.desc.setText(rDesc);
+        }
+        if(!url.isEmpty()) {
+            String cleanUrl = url.replaceAll("\\s", "%20");
+            Log.d("search", "loadDataList: ***" + cleanUrl);
+//            Picasso.get().load(url).into(holder.imageView);
+        }
     }
 
     //Calculate the item count for the RecylerView//
