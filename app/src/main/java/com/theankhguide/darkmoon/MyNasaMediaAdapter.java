@@ -46,22 +46,24 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
     //Set the data//
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        String rTitle = dataList.get_collection().get_items().get(position).get_data().get(0).get_title();
-        String rDesc = dataList.get_collection().get_items().get(position).get_data().get(0).get_description();
-        String url = dataList.get_collection().get_items().get(position).get_links().get(0).get_href();
+        try {
+            String rTitle = dataList.get_collection().get_items().get(position).get_data().get(0).get_title();
+            String rDesc = dataList.get_collection().get_items().get(position).get_data().get(0).get_description();
+            String url = dataList.get_collection().get_items().get(position).get_links().get(0).get_href();
 
-        if(!rTitle.isEmpty()) {
             holder.textTitle.setText(rTitle);
-        }
-        if(!rDesc.isEmpty()) {
+
             Log.d("search", "loadDataList: ***" + rDesc);
             holder.desc.setText(rDesc);
-        }
-        if(!url.isEmpty()) {
+
             String cleanUrl = url.replaceAll("\\s", "%20");
             Log.d("search", "loadDataList: ***" + cleanUrl);
-//            Picasso.get().load(url).into(holder.imageView);
+            Picasso.get().load(url).into(holder.imageView);
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     //Calculate the item count for the RecylerView//
