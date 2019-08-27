@@ -55,6 +55,7 @@ public class MyNasaMediaAdapter extends RecyclerView.Adapter<MyNasaMediaAdapter.
 
             Log.d("search", "loadDataList: ***" + rDesc);
             holder.desc.setText(rDesc);
+//            holder.desc.setText(dataList.get_collection().get_items().get(position).get_data().get(0).get_description());
 
             String cleanUrl = url.replaceAll("\\s", "%20");
             Log.d("search", "loadDataList: ***" + cleanUrl);
