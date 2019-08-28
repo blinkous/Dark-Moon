@@ -51,7 +51,6 @@
         app:itemIconTint="@drawable/bottom_nav_colors"
         android:fontFamily="@font/lato_reg"
         >
-
     </android.support.design.widget.BottomNavigationView>
 
 </android.support.constraint.ConstraintLayout>

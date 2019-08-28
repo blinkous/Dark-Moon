@@ -34,7 +34,8 @@ public class NasaSearchActivity extends AppCompatActivity {
                         // do something here
 //                        Toast.makeText(NasaSearchActivity.this, "Search...", Toast.LENGTH_SHORT).show();
                         return true;
-                    default: return true;
+                    default: return true; //default was at true
+//                    default: return false;
                 }
             }
         });
