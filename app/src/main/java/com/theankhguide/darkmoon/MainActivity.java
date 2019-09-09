@@ -1,9 +1,11 @@
 package com.theankhguide.darkmoon;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NasaSearchFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         /**Bottom Navigation*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        // Setting the listener for when something is selected in the bottom nav
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_apod:
-                        // do something here
-                        return true;
-                    case R.id.action_search:
-                        // do something here
-                        onTapSearch();
-                        return true;
-                    default: return true;
-                }
-            }
-        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavSelectListener);
 
+//        For in the future when I want to convert the home apod into a fragment
+//        getSupportFragmentManager().beginTransaction().replace(R.id.home_apod_fragment, selectedFragment).commit();
+    }
 
+//    WAS IN ON CREATE METHOD
 //        /**Swipe gesture listeners*/
 ////        View myView = (View) findViewById(R.id.container_view);
 //        TextView myView = (TextView) findViewById(R.id.textTopTitle);
@@ -73,7 +64,27 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
 //            }
 //        });
-    }
+
+    // Setting the listener for when something is selected in the bottom nav
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavSelectListener =
+        new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.action_apod:
+                    // do something here
+                    Log.d("a", "selected apod");
+                case R.id.action_search:
+                    // do something here
+                    Log.d("a", "selected search");
+                    selectedFragment = NasaSearchFragment.newInstance("param1","param2");
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return true; // Return true to indicate that we want to select the item
+        }
+    };
 
     public void getApod(){
         /**Getting the NASA APOD data and display it*/
@@ -120,5 +131,10 @@ public class MainActivity extends AppCompatActivity {
             Picasso.get().load(nasaList.get_url()).into(imageView);
 //            Log.d("home", "loadDataList: **********" + nasaList.get_url() + "*************");
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Log.d("frag", "onFragmentInteraction: YOU INTERACTED WITH FRAGMENT");
     }
 }
