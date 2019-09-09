@@ -64,7 +64,7 @@ public class NasaSearchFragment extends Fragment {
             startActivity(intent);
         }
         else{
-            Toast.makeText(NasaSearchActivity.this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
         }
     }
 
