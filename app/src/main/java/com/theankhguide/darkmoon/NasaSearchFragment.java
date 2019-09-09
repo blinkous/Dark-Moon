@@ -55,17 +55,17 @@ public class NasaSearchFragment extends Fragment {
     }
 
     public void onSearchButtonTap(View view){
-        Intent intent = new Intent(this, NasaMediaRecyclerView.class);
-        // Grab the search text, convert to string, and put it in the intent
-        EditText editText = (EditText) findViewById(R.id.media_search_text);
-        String message = editText.getText().toString();
-        if(!message.isEmpty()) {
-            intent.putExtra(EXTRA_MESSAGE, message);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
-        }
+//        Intent intent = new Intent(this, NasaMediaRecyclerView.class);
+//        // Grab the search text, convert to string, and put it in the intent
+//        EditText editText = (EditText) findViewById(R.id.media_search_text);
+//        String message = editText.getText().toString();
+//        if(!message.isEmpty()) {
+//            intent.putExtra(EXTRA_MESSAGE, message);
+//            startActivity(intent);
+//        }
+//        else{
+//            Toast.makeText(MainActivity.this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override
