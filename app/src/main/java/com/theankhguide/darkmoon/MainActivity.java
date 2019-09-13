@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
     private final Fragment apodFragment = new ApodFragment();
     private final Fragment searchFragment = new NasaSearchFragment();
     private Fragment activeFragment = apodFragment;
-    private int fragmentNum = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,14 +76,12 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
                     Log.d("a", "selected apod");
                     getSupportFragmentManager().beginTransaction().hide(activeFragment).show(apodFragment).commit();
                     activeFragment = apodFragment;
-                    fragmentNum = 1;
                     return true; // Return true to indicate that we want to select the item
 
                 case R.id.action_search:
                     Log.d("a", "selected search");
                     getSupportFragmentManager().beginTransaction().hide(activeFragment).show(searchFragment).commit();
                     activeFragment = searchFragment;
-                    fragmentNum = 2;
                     return true;
             }
             return false;
