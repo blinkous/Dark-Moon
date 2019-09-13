@@ -3,90 +3,87 @@ package com.theankhguide.darkmoon;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity implements NasaSearchFragment.OnFragmentInteractionListener, ApodFragment.OnFragmentInteractionListener{
-    private Fragment selectedFragment = ApodFragment.newInstance("param1", "param2");
     private static final String EXTRA_MESSAGE = "com.theankhguide.darkmoon.MESSAGE";
+
+    /** Using fragment variables to contain each fragment: used to maintain the state of the fragment when switching*/
+    private final Fragment apodFragment = new ApodFragment();
+    private final Fragment searchFragment = new NasaSearchFragment();
+    private Fragment activeFragment = apodFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        getApod();
-
         /**Bottom Navigation*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavSelectListener);
 
-//        For in the future when I want to convert the home apod into a fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        /** Adding the fragments to the fragment manager, and hiding the inactive fragments: used to maintain fragment state*/
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, searchFragment).hide(searchFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,apodFragment).commit();
     }
 
-//    WAS IN ON CREATE METHOD
-//        /**Swipe gesture listeners*/
-////        View myView = (View) findViewById(R.id.container_view);
-//        TextView myView = (TextView) findViewById(R.id.textTopTitle);
-//        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-//            @Override
-//            public void onSwipeDown() {
-//                Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onSwipeLeft() {
-//                Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onSwipeUp() {
-//                Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onSwipeRight() {
-//                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+//    WAS IN ON CREATE METHOD: Swipe gesture listeners
+        /**Swipe gesture listeners*/
+/*//        View myView = (View) findViewById(R.id.container_view);
+        TextView myView = (TextView) findViewById(R.id.textTopTitle);
+        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeDown() {
+                Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+            }
 
-    // Setting the listener for when something is selected in the bottom nav
+            @Override
+            public void onSwipeLeft() {
+                Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeUp() {
+                Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeRight() {
+                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+    /** Setting the listener for when something is selected in the bottom nav */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavSelectListener =
         new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+                /** Switching between fragments by hiding the current one,
+                 * showing the selected and setting the selected to active
+                 * in order to save the state of each fragment */
                 case R.id.action_apod:
-                    // do something here
                     Log.d("a", "selected apod");
-                    selectedFragment = ApodFragment.newInstance("param1", "param2");
-                    break;
+                    getSupportFragmentManager().beginTransaction().hide(activeFragment).show(apodFragment).commit();
+                    activeFragment = apodFragment;
+                    return true; // Return true to indicate that we want to select the item
+
                 case R.id.action_search:
-                    // do something here
                     Log.d("a", "selected search");
-                    selectedFragment = NasaSearchFragment.newInstance("param1","param2");
-                    break;
+                    getSupportFragmentManager().beginTransaction().hide(activeFragment).show(searchFragment).commit();
+                    activeFragment = searchFragment;
+                    return true;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-            return true; // Return true to indicate that we want to select the item
+            return false;
         }
     };
 
@@ -121,20 +118,20 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
     }
 */
 
-public void onSearchButtonTap(View view){
-    Intent intent = new Intent(this, NasaMediaRecyclerView.class);
-    // Grab the search text, convert to string, and put it in the intent
-    EditText editText = (EditText) findViewById(R.id.media_search_text);
-    String message = editText.getText().toString();
-    if(!message.isEmpty()) {
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+    public void onSearchButtonTap(View view){
+        Intent intent = new Intent(this, NasaMediaRecyclerView.class);
+        // Grab the search text, convert to string, and put it in the intent
+        EditText editText = (EditText) findViewById(R.id.media_search_text);
+        String message = editText.getText().toString();
+        if(!message.isEmpty()) {
+            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
+        }
+        Log.d("a", "onSearchButtonTap: ***YOU'VE CLICKED SEARCH****");
     }
-    else{
-        Toast.makeText(this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
-    }
-    Log.d("a", "onSearchButtonTap: ***YOU'VE CLICKED SEARCH****");
-}
 
 /*    private void loadDataList (RetroNasa nasaList) {
         if(!nasaList.get_title().isEmpty() && !nasaList.get_explanation().isEmpty() && !nasaList.get_url().isEmpty()){

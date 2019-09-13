@@ -82,6 +82,7 @@ public class ApodFragment extends Fragment {
         /**Getting the NASA APOD data and display it*/
         //Create a handler for the RetrofitInstance interface//
         GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
+        Log.d("home", "loadDataList: ********** calling apod DATA *************");
 
         Call<RetroNasa> call = service.getAllNasa();
 
@@ -109,16 +110,16 @@ public class ApodFragment extends Fragment {
     private void loadDataList (RetroNasa nasaList) {
         if(!nasaList.get_title().isEmpty() && !nasaList.get_explanation().isEmpty() && !nasaList.get_url().isEmpty()){
             // Get references to the objects in the layout by using getView() to access the root view since this is a Fragment
-            TextView textTitle = getView().findViewById(R.id.textTitle);
-            TextView desc = getView().findViewById(R.id.textDesc);
-            ImageView imageView = getView().findViewById(R.id.imageView);
+            TextView textTitle = getView().findViewById(R.id.apodTitle);
+            TextView desc = getView().findViewById(R.id.apodDesc);
+            ImageView imageView = getView().findViewById(R.id.apodImageView);
 
             // Setting the layout objects
             textTitle.setText(nasaList.get_title());
             desc.setText(nasaList.get_explanation());
             Picasso.get().load(nasaList.get_url()).into(imageView);
 //            Log.d("home", "loadDataList: **********" + nasaList.get_url() + "*************");
-            Log.d("home", "loadDataList: ********** GETTING DATA *************");
+            Log.d("home", "loadDataList: ********** GETTING apod DATA *************");
         }
     }
 
