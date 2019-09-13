@@ -56,7 +56,7 @@ public class NasaSearchFragment extends Fragment {
         return fragment;
     }
 
-    public void onSearchButtonTap(View view){
+/*    public void onSearchButtonTap(View view){
         Intent intent = new Intent(getActivity(), NasaMediaRecyclerView.class);
         // Grab the search text, convert to string, and put it in the intent
         EditText editText = (EditText) getView().findViewById(R.id.media_search_text);
@@ -69,7 +69,7 @@ public class NasaSearchFragment extends Fragment {
             Toast.makeText(getActivity(), "Please enter search criteria.", Toast.LENGTH_SHORT).show();
         }
         Log.d("a", "onSearchButtonTap: ***YOU'VE CLICKED SEARCH****");
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

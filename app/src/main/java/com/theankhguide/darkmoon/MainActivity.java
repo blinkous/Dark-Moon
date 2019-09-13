@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NasaSearchFragment.OnFragmentInteractionListener, ApodFragment.OnFragmentInteractionListener{
     private Fragment selectedFragment = ApodFragment.newInstance("param1", "param2");
+    private static final String EXTRA_MESSAGE = "com.theankhguide.darkmoon.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,12 +121,20 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
     }
 */
 
-/*
-    public void onTapSearch(){
-        Intent intent = new Intent(this, NasaSearchActivity.class);
+public void onSearchButtonTap(View view){
+    Intent intent = new Intent(this, NasaMediaRecyclerView.class);
+    // Grab the search text, convert to string, and put it in the intent
+    EditText editText = (EditText) findViewById(R.id.media_search_text);
+    String message = editText.getText().toString();
+    if(!message.isEmpty()) {
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
-*/
+    else{
+        Toast.makeText(this, "Please enter search criteria.", Toast.LENGTH_SHORT).show();
+    }
+    Log.d("a", "onSearchButtonTap: ***YOU'VE CLICKED SEARCH****");
+}
 
 /*    private void loadDataList (RetroNasa nasaList) {
         if(!nasaList.get_title().isEmpty() && !nasaList.get_explanation().isEmpty() && !nasaList.get_url().isEmpty()){

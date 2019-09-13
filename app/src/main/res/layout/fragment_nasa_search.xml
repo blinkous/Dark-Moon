@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,6 @@
 
 
     <android.support.constraint.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/apod_constraint_layout"
@@ -35,16 +35,15 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
-            android:text="Search"
-            android:onClick="onSearchButtonTap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/media_search_text"
-            android:fontFamily="@font/lato_reg"
             android:background="@drawable/my_button"
             android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/lato_reg"
+            android:onClick="onSearchButtonTap"
+            android:text="Search"
             android:textColor="@color/colorPrimary"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/media_search_text" />
 
     </android.support.constraint.ConstraintLayout>
 
