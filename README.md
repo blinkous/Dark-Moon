@@ -3,5 +3,5 @@ This is an Android app that explores the use of the NASA API. So far, the app di
 
 <img src="https://i.imgur.com/WKDQyu7.gif" alt="Dark Moon Demo"/>
 
-## Older Demo Images
+##### Static Demo Images
 <img src="https://i.imgur.com/QKtN3kB.png" width=30% alt="Dark Moon APOD Screen"/>    <img src="https://i.imgur.com/HV8Hq4X.png" width=30% alt="Dark Moon Search Screen"/>
