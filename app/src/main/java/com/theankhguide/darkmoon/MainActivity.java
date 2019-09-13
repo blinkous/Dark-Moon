@@ -2,6 +2,7 @@ package com.theankhguide.darkmoon;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
     private final Fragment apodFragment = new ApodFragment();
     private final Fragment searchFragment = new NasaSearchFragment();
     private Fragment activeFragment = apodFragment;
+    private int fragmentNum = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,apodFragment).commit();
     }
 
-//    WAS IN ON CREATE METHOD: Swipe gesture listeners
+    //    WAS IN ON CREATE METHOD: Swipe gesture listeners
         /**Swipe gesture listeners*/
 /*//        View myView = (View) findViewById(R.id.container_view);
         TextView myView = (TextView) findViewById(R.id.textTopTitle);
@@ -75,12 +77,14 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
                     Log.d("a", "selected apod");
                     getSupportFragmentManager().beginTransaction().hide(activeFragment).show(apodFragment).commit();
                     activeFragment = apodFragment;
+                    fragmentNum = 1;
                     return true; // Return true to indicate that we want to select the item
 
                 case R.id.action_search:
                     Log.d("a", "selected search");
                     getSupportFragmentManager().beginTransaction().hide(activeFragment).show(searchFragment).commit();
                     activeFragment = searchFragment;
+                    fragmentNum = 2;
                     return true;
             }
             return false;
