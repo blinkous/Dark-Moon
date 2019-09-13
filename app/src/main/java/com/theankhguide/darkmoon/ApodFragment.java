@@ -1,7 +1,6 @@
 package com.theankhguide.darkmoon;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,24 +8,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NasaSearchFragment.OnFragmentInteractionListener} interface
+ * {@link ApodFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NasaSearchFragment#newInstance} factory method to
+ * Use the {@link ApodFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NasaSearchFragment extends Fragment {
+public class ApodFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String EXTRA_MESSAGE = "com.theankhguide.darkmoon.MESSAGE";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -34,7 +39,7 @@ public class NasaSearchFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public NasaSearchFragment() {
+    public ApodFragment() {
         // Required empty public constructor
     }
 
@@ -44,31 +49,16 @@ public class NasaSearchFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NasaSearchFragment.
+     * @return A new instance of fragment ApodFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NasaSearchFragment newInstance(String param1, String param2) {
-        NasaSearchFragment fragment = new NasaSearchFragment();
+    public static ApodFragment newInstance(String param1, String param2) {
+        ApodFragment fragment = new ApodFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public void onSearchButtonTap(View view){
-        Intent intent = new Intent(getActivity(), NasaMediaRecyclerView.class);
-        // Grab the search text, convert to string, and put it in the intent
-        EditText editText = (EditText) getView().findViewById(R.id.media_search_text);
-        String message = editText.getText().toString();
-        if(!message.isEmpty()) {
-            intent.putExtra(EXTRA_MESSAGE, message);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(getActivity(), "Please enter search criteria.", Toast.LENGTH_SHORT).show();
-        }
-        Log.d("a", "onSearchButtonTap: ***YOU'VE CLICKED SEARCH****");
     }
 
     @Override
@@ -78,13 +68,58 @@ public class NasaSearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        getApod();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nasa_search, container, false);
+        return inflater.inflate(R.layout.fragment_apod, container, false);
+    }
+
+    private void getApod(){
+        /**Getting the NASA APOD data and display it*/
+        //Create a handler for the RetrofitInstance interface//
+        GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
+
+        Call<RetroNasa> call = service.getAllNasa();
+
+        //Execute the request asynchronously//
+        call.enqueue(new Callback<RetroNasa>() {
+            //Handle a successful response//
+            @Override
+            public void onResponse(Call<RetroNasa> call, Response<RetroNasa> response) {
+                if(response.body() != null) {
+                    loadDataList(response.body());
+                }
+            }
+
+            //Handle execution failures//
+            @Override
+            public void onFailure(Call<RetroNasa> call, Throwable throwable) {
+                //If the request fails, then display the following toast//
+                Toast.makeText(getActivity(), "Unable to load APOD data", Toast.LENGTH_SHORT).show();
+                Log.d("nasa", "onFailure:" + throwable);
+            }
+        });
+    }
+
+
+    private void loadDataList (RetroNasa nasaList) {
+        if(!nasaList.get_title().isEmpty() && !nasaList.get_explanation().isEmpty() && !nasaList.get_url().isEmpty()){
+            // Get references to the objects in the layout by using getView() to access the root view since this is a Fragment
+            TextView textTitle = getView().findViewById(R.id.textTitle);
+            TextView desc = getView().findViewById(R.id.textDesc);
+            ImageView imageView = getView().findViewById(R.id.imageView);
+
+            // Setting the layout objects
+            textTitle.setText(nasaList.get_title());
+            desc.setText(nasaList.get_explanation());
+            Picasso.get().load(nasaList.get_url()).into(imageView);
+//            Log.d("home", "loadDataList: **********" + nasaList.get_url() + "*************");
+            Log.d("home", "loadDataList: ********** GETTING DATA *************");
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

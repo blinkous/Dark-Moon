@@ -22,21 +22,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements NasaSearchFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements NasaSearchFragment.OnFragmentInteractionListener, ApodFragment.OnFragmentInteractionListener{
+    private Fragment selectedFragment = ApodFragment.newInstance("param1", "param2");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getApod();
+//        getApod();
 
         /**Bottom Navigation*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavSelectListener);
 
 //        For in the future when I want to convert the home apod into a fragment
-//        getSupportFragmentManager().beginTransaction().replace(R.id.home_apod_fragment, selectedFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
     }
 
 //    WAS IN ON CREATE METHOD
@@ -70,24 +71,28 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
         new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
-
             switch (item.getItemId()) {
                 case R.id.action_apod:
                     // do something here
                     Log.d("a", "selected apod");
+                    selectedFragment = ApodFragment.newInstance("param1", "param2");
+                    break;
                 case R.id.action_search:
                     // do something here
                     Log.d("a", "selected search");
                     selectedFragment = NasaSearchFragment.newInstance("param1","param2");
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true; // Return true to indicate that we want to select the item
         }
     };
 
-    public void getApod(){
-        /**Getting the NASA APOD data and display it*/
+/*
+    private void getApod(){
+        */
+/**Getting the NASA APOD data and display it*//*
+
         //Create a handler for the RetrofitInstance interface//
         GetNasaApodData service = RetrofitNasaClient.getRetrofitInstance().create(GetNasaApodData.class);
 
@@ -112,13 +117,16 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
             }
         });
     }
+*/
 
+/*
     public void onTapSearch(){
         Intent intent = new Intent(this, NasaSearchActivity.class);
         startActivity(intent);
     }
+*/
 
-    private void loadDataList (RetroNasa nasaList) {
+/*    private void loadDataList (RetroNasa nasaList) {
         if(!nasaList.get_title().isEmpty() && !nasaList.get_explanation().isEmpty() && !nasaList.get_url().isEmpty()){
             // Get references to the objects in the layout
             TextView textTitle = findViewById(R.id.textTitle);
@@ -131,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NasaSearchFragmen
             Picasso.get().load(nasaList.get_url()).into(imageView);
 //            Log.d("home", "loadDataList: **********" + nasaList.get_url() + "*************");
         }
-    }
+    }*/
 
     @Override
     public void onFragmentInteraction(Uri uri) {
